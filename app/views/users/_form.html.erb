@@ -22,11 +22,22 @@
   </div>
 
   <div class="field">
+    <%= form.label :email %>
+    <%= form.email_field :email, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
     <%= form.label :role_id %>
     <%= collection_select(:user, :role_id, Role.all, :id, :name, {prompt: true}) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.password_field :password, placeholder: "Leave blank if unchanged" %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
+
 <% end %>

@@ -1,6 +1,6 @@
 class EvaluationsController < ApplicationController
   before_action :set_evaluation, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /evaluations
   # GET /evaluations.json
   def index
@@ -24,6 +24,7 @@ class EvaluationsController < ApplicationController
   # POST /evaluations
   # POST /evaluations.json
   def create
+    @evaluation.user_id = current_user.id
     @evaluation = Evaluation.new(evaluation_params)
 
     respond_to do |format|

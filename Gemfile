@@ -9,7 +9,9 @@ gem 'rails', '~> 5.2.3'
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
-# Use rails-erd for generate ERD
+# User devise for authentication +
+gem "devise"
+# Use rails-erd for generate ERD +
 gem 'rails-erd', group: :development
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
