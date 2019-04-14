@@ -13,6 +13,8 @@ gem 'puma', '~> 3.11'
 gem "devise"
 # Use rails-erd for generate ERD +
 gem 'rails-erd', group: :development
+# Use for icons +
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.4'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets

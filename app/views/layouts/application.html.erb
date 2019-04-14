@@ -7,10 +7,12 @@
 
     <%= stylesheet_link_tag    'application' %>
     <%= javascript_include_tag 'application' %>
+    
   </head>
 
   <body>
-    <div class="container">
+    <!-- Navbar -->
+    <%= render 'layouts/navbar' %>
       <!-- Alerts for user authetication -->
       <% if user_signed_in? %>
         Signed in as <%= current_user.email %>. Not you?
@@ -24,8 +26,6 @@
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, id: "flash_#{name}" %>
       <% end %>
-      <!-- end -->
-      <%= yield %>
-    </div>
+    <%= yield %>
   </body>
 </html>

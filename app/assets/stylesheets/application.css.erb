@@ -11,6 +11,47 @@
  * It is generally better to create a new file per style scope.
  *
  *= require bootstrap/dist/css/bootstrap
+ *= require font-awesome
  *= require_tree .
  *= require_self
  */
+
+.navbar {
+  border-bottom: #008ed6 3px solid;
+}
+
+.card {
+  color: #fff;
+}
+
+select {
+  width: 100%;
+}
+
+
+body {
+  
+  margin: 0;  
+}
+
+#registration{
+  color: #fff;
+  background-image: url(<%= asset_path 'register1.jpg' %>);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  min-height: 700px;
+
+}
+
+#registration .dark-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 700px;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+#registration .registration-inner {
+  padding-top: 100px;
+}
