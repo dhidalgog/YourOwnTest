@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class=col-lg-4>
-          <div class="card border-primary text-center card-form">
+          <div class="card bg-primary text-center card-form">
             <div class="card-body">
               <h3>Sign Up</h3>
               <p>Please fill out this form to register</p>
@@ -72,9 +72,9 @@
                   </div>
                 </div>
                 <div class="actions">
-                  <%= f.submit "Sign up", class: "btn btn-outline-primary btn-block" %>
+                  <%= f.submit "Sign up", class: "btn btn-secondary btn-block" %>
                 </div>
-                <a class="btn btn-outline-primary btn-block" href="<%= new_user_session_path %>">Log in</a>
+                <a class="btn btn-secondary btn-block" id="login-button" href="<%= new_user_session_path %>">Log in</a>
               <% end %>
             </div>
           </div>

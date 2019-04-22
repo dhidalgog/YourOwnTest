@@ -24,8 +24,9 @@ class EvaluationsController < ApplicationController
   # POST /evaluations
   # POST /evaluations.json
   def create
-    @evaluation.user_id = current_user.id
+    
     @evaluation = Evaluation.new(evaluation_params)
+    @evaluation.user_id = current_user.id
 
     respond_to do |format|
       if @evaluation.save
