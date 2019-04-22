@@ -11,11 +11,14 @@
           <%= link_to "Evaluations", evaluations_path, class: "nav-link"%>
         </li>
         <% if user_signed_in? %>
-        <li class="nav-item">
-          <%= link_to "Edit profile", edit_user_registration_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Log out", destroy_user_session_path, class: "nav-link", :method => "delete" %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= current_user.name  %>
+            <%= current_user.last_name  %>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to "Edit profile", edit_user_registration_path, class: "dropdown-item" %>
+            <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", :method => "delete" %>
         </li>
         <% else %>
         <li class="nav-item">

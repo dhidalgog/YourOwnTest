@@ -1,89 +1,38 @@
-<header id="registration">
-  <div class="dark-overlay">
-    <div class="registration-inner container">
-      <div class="row">
-        <div class="col-lg-8 d-none d-lg-block">
-          <h1 class="display-4"> Simple and easy way to create your own tests.
-            </h1>
-            <div class="d-flex">
-              <div class="p-4 align-self-start">
-                <i class="fa fa-check fa-2x"></i>
-              </div>
-              <div class="p-4 align-self-end">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed, tempore iusto in minima facere dolorem!
-              </div>
-            </div>
+<div id="logreg-forms">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign up</h1>
+    <div class="social-login">
+        <button class="btn facebook-btn social-btn" type="button"><span><i class="fa fa-facebook-f"></i> Sign up with Facebook</span> </button>
+    </div>
+    <p style="text-align:center"> OR  </p>
 
-            <div class="d-flex">
-              <div class="p-4 align-self-start">
-                <i class="fa fa-check fa-2x"></i>
-              </div>
-              <div class="p-4 align-self-end">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed, tempore iusto in minima facere dolorem!
-              </div>
-            </div>
+    <%= f.text_field :name, class: "form-control form-control-lg", placeholder: "Name", autofocus: true, autocomplete: "name" %>
 
-            <div class="d-flex">
-              <div class="p-4 align-self-start">
-                <i class="fa fa-check fa-2x"></i>
-              </div>
-              <div class="p-4 align-self-end">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed, tempore iusto in minima facere dolorem!
-              </div>
-            </div>
-        </div>
-        <div class=col-lg-4>
-          <div class="card bg-primary text-center card-form">
-            <div class="card-body">
-              <h3>Sign Up</h3>
-              <p>Please fill out this form to register</p>
-              <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-                <%= render "devise/shared/error_messages", resource: resource %>
+    <%= f.text_field :last_name, class: "form-control form-control-lg", placeholder: "Last Name", autocomplete: "last name" %>
 
-                <div class="form-group">
-                  <%= f.text_field :name, class: "form-control form-control-lg", placeholder: "Name", autofocus: true, autocomplete: "name" %>
-                </div>
+    <%= f.email_field :email, class: "form-control form-control-lg", placeholder: "Email", autocomplete: "email" %>
 
-                <div class="form-group">
-                  <%= f.text_field :last_name, class: "form-control form-control-lg", placeholder: "Last Name", autocomplete: "last name" %>
-                </div>
+    <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, class: "form-control form-control-lg", placeholder: "Password", autocomplete: "new-password" %>
 
-                <div class="form-group">
-                  <%= f.email_field :email, class: "form-control form-control-lg", placeholder: "Email", autocomplete: "email" %>
-                </div>
+    <%= f.password_field :password_confirmation, class: "form-control form-control-lg", placeholder: "Confirm Password", autocomplete: "new-password" %><br/>
 
-                <div class="form-group">
-                  <% if @minimum_password_length %>
-                  <em>(<%= @minimum_password_length %> characters minimum)</em>
-                  <% end %><br />
-                  <%= f.password_field :password, class: "form-control form-control-lg", placeholder: "Password", autocomplete: "new-password" %>
-                </div>
-
-                <div class="form-group">
-                  <%= f.password_field :password_confirmation, class: "form-control form-control-lg", placeholder: "Confirm Password", autocomplete: "new-password" %>
-                </div>
-
-                <div class="row pb-3">
-                  <div class="col-sm-4">
-                      <%= f.label "Register as:", class: "p" %>
-                  </div>
-                  <div class="col-sm-8">
-                      <%= f.select :role_id, Role.pluck(:name, :id) %>
-                  </div>
-                </div>
-                <div class="actions">
-                  <%= f.submit "Sign up", class: "btn btn-secondary btn-block" %>
-                </div>
-                <a class="btn btn-secondary btn-block" id="login-button" href="<%= new_user_session_path %>">Log in</a>
-              <% end %>
-            </div>
-          </div>
-        </div>
+    <div class="row pb-3">
+      <div class="col-sm-4">
+          <%= f.label "Register as:", class: "p" %>
+      </div>
+      <div class="col-sm-8">
+          <%= f.select :role_id, Role.pluck(:name, :id) %>
       </div>
     </div>
-  </div>
-</header>
+    <%= f.submit "Sign up", class: "btn btn-primary btn-block" %>
+    <%= link_to "Log in?", new_user_session_path, class: "btn btn-secondary btn-block"%>
 
-
+  <% end %>
+      
+</div>
 
 
