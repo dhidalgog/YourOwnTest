@@ -1,25 +1,84 @@
-<p>
-  <strong>Name:</strong>
-  <%= @evaluation.name %>
-</p>
+ <div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-6 h4">Evaluation: <%= @evaluation.name %></div>
+      <div class="col-6 text-right">
+        <strong>N questions:</strong>
+        <%= @evaluation.n_questions %>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-12">
+        <p class="lead">Description: <%= @evaluation.description %></p>
+      </div>
+      <div class="col-12 text-center">
+        <h4>Question List</h4>
+      </div>
+    </div>
+    <hr>
+    <div class="jumbotron">
+      <div class="row">
+        <div class="col-12">
+          <p class="h4 text-center">Form Question</p>
+          <%= form_with(model: @question, local: true) do |form| %>
+            <% if @question.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
+                <ul>
+                  <% @question.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <div class="form-group">
+              <p> <%= form.label :category %> </p>
+              <%= form.select :category_id, Category.pluck(:name, :id) %>
+            </div><hr/>
 
-<p>
-  <strong>Description:</strong>
-  <%= @evaluation.description %>
-</p>
+            <div class="form-group">
+              <p> <%= form.label "Question content" %> </p>
+              <div class="container">
+                <%= form.text_area :content, class: "w-100", value: "¿...?" %>
+              </div>
+            </div><hr/>
+        
+            <%= form.fields_for :questions_to_evaluate do |qe| %>
+              <%= qe.hidden_field :evaluation_id, :value => @evaluation.id %>
+            <% end %>
 
-<p>
-  <strong>N questions:</strong>
-  <%= @evaluation.n_questions %>
-</p>
+        
+            <p>Answers</p>
+            <!-- Answer 1 -->
+            <%= form.fields_for :answers do |a1| %>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <%= a1.check_box :value %>
+                    </div>
+                </div>
+                <%= a1.text_area :content, class: "form-control" %>
+              </div>
+            <% end %>
 
-<p>
-  <strong>Teacher:</strong>
-  <%= @evaluation.user.name %>
-</p>
+            
+          <div class="row">
+            <div class="col-6">
+              <%= form.submit "Add question", class: "btn btn-success btn-lg"%>
+            </div>
+            <div class="col-6 text-right">
+              <%= link_to 'Edit', edit_evaluation_path(@evaluation), class: "btn btn-link btn-lg" %> |
+              <%= link_to 'Back', evaluations_path, class: "btn btn-link btn-lg" %>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_evaluation_path(@evaluation) %> |
-<%= link_to 'Back', evaluations_path %>
-<hr/>
-<%= link_to 'Add Questions', evaluation_path , class: "btn btn-primary btn-lg" %>
+<script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
 

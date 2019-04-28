@@ -14,7 +14,6 @@ class QuestionsController < ApplicationController
 
   # GET /questions/new
   def new
-    @question = Question.new
   end
 
   # GET /questions/1/edit
@@ -25,12 +24,15 @@ class QuestionsController < ApplicationController
   # POST /questions.json
   def create
     @question = Question.new(question_params)
-
+    @question.user_id = current_user.id
+    @question_to_evaluate = QuestionsToEvaluate.last
     respond_to do |format|
       if @question.save
         format.html { redirect_to @question, notice: 'Question was successfully created.' }
         format.json { render :show, status: :created, location: @question }
+        @question_to_evaluate.question_id = @question.id
       else
+        @question_to_evaluate.destroy
         format.html { render :new }
         format.json { render json: @question.errors, status: :unprocessable_entity }
       end
@@ -69,6 +71,11 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:content, :user_id, :category_id)
+      params.require(:question).permit(
+        :content,
+        :category_id,
+        questions_to_evaluate_attributes: [:id, :evaluation_id],
+        answers_attributes: [:id, :content, :value, :question_id]
+        )
     end
 end

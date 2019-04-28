@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Content:</strong>
   <%= @question.content %>
@@ -7,12 +5,23 @@
 
 <p>
   <strong>User:</strong>
-  <%= @question.user %>
+  <%= @question.user.name %>
+  <%= @question.user.last_name %>
 </p>
 
 <p>
   <strong>Category:</strong>
-  <%= @question.category %>
+  <%= @question.category.name %>
+</p>
+
+<p>
+  <strong>Answers:</strong>
+  <% @question.answers.each do |a| %>
+  <p>
+    <%= a.content %>
+    <%= a.value %>
+  </p>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_question_path(@question) %> |

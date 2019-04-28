@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-primary fixed-top">
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary fixed-top p-0">
   <div class="container">
     <a class="navbar-brand" href="#">YourOwnTest</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -7,10 +7,10 @@
 
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav ml-auto">
+        <% if user_signed_in? %>
         <li class="nav-item">
           <%= link_to "Evaluations", evaluations_path, class: "nav-link"%>
         </li>
-        <% if user_signed_in? %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <%= current_user.name  %>
@@ -21,12 +21,6 @@
             <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", :method => "delete" %>
         </li>
         <% else %>
-        <li class="nav-item">
-          <%= link_to "Sign in", new_user_session_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Sign up", new_user_registration_path, class:"nav-link" %>
-        </li>
         <% end %>
       </ul>
     </div>
