@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   scope "/admin" do
     resources :users
   end
-  
+  resources :questions_to_evaluate, only: :destroy
   resources :evaluations
   resources :roles
 

@@ -13,8 +13,23 @@
       <div class="col-12">
         <p class="lead">Description: <%= @evaluation.description %></p>
       </div>
-      <div class="col-12 text-center">
-        <h4>Question List</h4>
+      <div class="col-12">
+        <h4 class="text-center">Question List</h4>
+        <% @questions_list.each do |question|%>
+        <p>Category: <%= question.category.name %></p>
+          <ol>
+            <li>
+              <%= question.content %>
+              <%= link_to 'Edit', edit_question_path(question) %>
+              <%= link_to 'Destroy', questions_to_evaluate_path(QuestionsToEvaluate.find_by(evaluation_id: @evaluation.id,question_id: question.id).id), method: :delete, data: { confirm: 'Are you sure?' } %>
+              <% question.answers.each do |answer| %>
+                <ul>
+                  <li> <%= answer.content %> </li>
+                </ul> 
+              <% end %>
+            </li>
+          </ol>
+        <% end %>
       </div>
     </div>
     <hr>
@@ -80,5 +95,4 @@
   </div>
 </div>
 
-<script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
 

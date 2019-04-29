@@ -10,15 +10,15 @@ class EvaluationsController < ApplicationController
   # GET /evaluations/1
   # GET /evaluations/1.json
   def show
+    # Question List
+    @questions_list = @evaluation.questions
+    # Question Form
     @question = Question.new
-    @question_to_evaluate = @question.questions_to_evaluate.build
+    @question.questions_to_evaluate.build
     @question.answers.new
     @question.answers.new
     @question.answers.new
     @question.answers.new
-    # @answer2 = @question.answers.build
-    # @answer3 = @question.answers.build
-    # @answer4 = @question.answers.build
   end
 
   # GET /evaluations/new
