@@ -3,9 +3,7 @@ Rails.application.routes.draw do
   resources :questions
   resources :categories
   devise_for :users
-  scope "/admin" do
-    resources :users
-  end
+
   resources :questions_to_evaluate, only: :destroy
   resources :evaluations
   resources :roles
