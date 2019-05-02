@@ -17,6 +17,8 @@ gem 'cancancan'
 gem 'rails-erd', group: :development
 # Use for icons +
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.4'
+# omni facebook
+gem 'omniauth-facebook'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
