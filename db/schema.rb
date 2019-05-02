@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_28_063537) do
+ActiveRecord::Schema.define(version: 2019_05_02_030909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,12 +24,30 @@ ActiveRecord::Schema.define(version: 2019_04_28_063537) do
     t.index ["question_id"], name: "index_answers_on_question_id"
   end
 
+  create_table "belongs_tos", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_belongs_tos_on_course_id"
+    t.index ["user_id"], name: "index_belongs_tos_on_user_id"
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_categories_on_user_id"
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_courses_on_user_id"
   end
 
   create_table "evaluations", force: :cascade do |t|
@@ -90,7 +108,10 @@ ActiveRecord::Schema.define(version: 2019_04_28_063537) do
   end
 
   add_foreign_key "answers", "questions"
+  add_foreign_key "belongs_tos", "courses"
+  add_foreign_key "belongs_tos", "users"
   add_foreign_key "categories", "users"
+  add_foreign_key "courses", "users"
   add_foreign_key "evaluations", "users"
   add_foreign_key "questions", "categories"
   add_foreign_key "questions", "users"

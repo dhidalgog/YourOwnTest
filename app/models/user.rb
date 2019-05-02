@@ -8,6 +8,11 @@ class User < ApplicationRecord
   has_many :evaluations
   has_many :categories
   has_many :questions
+  # Teacher - Course
+  has_many :courses
+  # Student - Course
+  has_many :belongs_tos
+  has_many :courses, :through => :belongs_tos
 
   validates_presence_of %i[name last_name]
 end
