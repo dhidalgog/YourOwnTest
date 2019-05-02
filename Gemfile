@@ -11,6 +11,8 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 # User devise for authentication +
 gem "devise"
+# User cancancan for permists +
+gem 'cancancan'
 # Use rails-erd for generate ERD +
 gem 'rails-erd', group: :development
 # Use for icons +
@@ -40,7 +42,7 @@ gem 'jbuilder', '~> 2.5'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
-
+# For heroku +
 group :production do
 gem "webpacker", require: false
 end
