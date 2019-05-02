@@ -1,10 +1,10 @@
- <div class="card">
+<div class="card">
   <div class="card-header">
     <div class="row">
       <div class="col-6 h4">Evaluation: <%= @evaluation.name %></div>
       <div class="col-6 text-right">
-        <strong>N questions:</strong>
-        <%= @evaluation.n_questions %>
+        <%= link_to 'Edit', edit_evaluation_path(@evaluation), class: "btn btn-link btn-lg" %> |
+        <%= link_to 'Back', evaluations_path, class: "btn btn-link btn-lg" %>
       </div>
     </div>
   </div>
@@ -15,11 +15,13 @@
       </div>
       <div class="col-12">
         <h4 class="text-center">Question List</h4>
-        <% @questions_list.each do |question|%>
-        <p>Category: <%= question.category.name %></p>
+        
+        
           <ol>
+          <% @questions_list.each do |question|%>
             <li>
               <%= question.content %>
+              | Category: <%= question.category.name %>
               <%= link_to 'Edit', edit_question_path(question) %>
               <%= link_to 'Destroy', questions_to_evaluate_path(QuestionsToEvaluate.find_by(evaluation_id: @evaluation.id,question_id: question.id).id), method: :delete, data: { confirm: 'Are you sure?' } %>
               <% question.answers.each do |answer| %>
@@ -28,8 +30,9 @@
                 </ul> 
               <% end %>
             </li>
+            <% end %>
           </ol>
-        <% end %>
+        
       </div>
     </div>
     <hr>
@@ -48,15 +51,27 @@
                 </ul>
               </div>
             <% end %>
+
+            
             <div class="form-group">
               <p> <%= form.label :category %> </p>
-              <%= form.select :category_id, Category.pluck(:name, :id) %>
-            </div><hr/>
+              <div class="row">
+                <div class="col-8">
+                  <%= form.select :category_id, Category.pluck(:name, :id) %>
+                </div>
+                <div class="col-4">
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    New category
+                  </button>
+                </div>
+              </div>
+            </div>
 
             <div class="form-group">
               <p> <%= form.label "Question content" %> </p>
               <div class="container">
-                <%= form.text_area :content, class: "w-100", value: "¿...?" %>
+                <%= form.text_area :content, class: "w-100", placeholder: "Question?" %>
               </div>
             </div><hr/>
         
@@ -66,7 +81,7 @@
 
         
             <p>Answers</p>
-            <!-- Answer 1 -->
+            <!-- Answers -->
             <%= form.fields_for :answers do |a1| %>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -74,7 +89,7 @@
                       <%= a1.check_box :value %>
                     </div>
                 </div>
-                <%= a1.text_area :content, class: "form-control" %>
+                <%= a1.text_area :content, class: "form-control", placeholder: "Answer" %>
               </div>
             <% end %>
 
@@ -84,8 +99,7 @@
               <%= form.submit "Add question", class: "btn btn-success btn-lg"%>
             </div>
             <div class="col-6 text-right">
-              <%= link_to 'Edit', edit_evaluation_path(@evaluation), class: "btn btn-link btn-lg" %> |
-              <%= link_to 'Back', evaluations_path, class: "btn btn-link btn-lg" %>
+             
             </div>
           </div>
           <% end %>
@@ -95,4 +109,46 @@
   </div>
 </div>
 
+ <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add new category</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id="notice"><%= notice %></p>
+        <%= form_with model: @category do |form| %>
+          <% if @category.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+              <ul>
+              <% @category.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <div class="row">
+            <div class="col-8">
+              <div class="field">
+                <%= form.text_field :name, placeholder: "Category Name", class:"w-100" %>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="actions">
+                <%= form.submit "Add Category", class:"btn btn-primary", id:"newCategory" %>
+              </div>
+            </div>
+          </div>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 

@@ -19,6 +19,8 @@ class EvaluationsController < ApplicationController
     @question.answers.new
     @question.answers.new
     @question.answers.new
+    # Question Category
+    @category = Category.new
   end
 
   # GET /evaluations/new
