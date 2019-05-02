@@ -1,12 +1,10 @@
-<h1>Evaluations</h1>
+<h1>My Evaluations</h1>
 
 <table class="table">
   <thead>
     <tr>
       <th>Name</th>
       <th>Description</th>
-      <th>N questions</th>
-      <th>Teacher</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -14,11 +12,11 @@
   <tbody>
     <% @evaluations.each do |evaluation| %>
       <tr>
+      <%if can?(:read, evaluation) %>
         <td><%= evaluation.name %></td>
         <td><%= evaluation.description %></td>
-        <td><%= evaluation.n_questions %></td>
-        <td><%= evaluation.user.name %> <%= evaluation.user.last_name %></td>
         <td><%= link_to 'Customize', evaluation %></td>
+      <% end %>
       </tr>
     <% end %>
   </tbody>

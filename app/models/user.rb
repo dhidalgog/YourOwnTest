@@ -15,4 +15,16 @@ class User < ApplicationRecord
   has_many :courses, :through => :belongs_tos
 
   validates_presence_of %i[name last_name]
+
+  def admin?
+    self.role.name == "Admin"
+  end
+
+  def teacher?
+    self.role.name == "Teacher"
+  end
+
+  def student?
+    self.role.name == "Student"
+  end
 end

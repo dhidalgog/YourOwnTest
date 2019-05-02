@@ -1,6 +1,5 @@
 class EvaluationsController < ApplicationController
-  before_action :set_evaluation, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  load_and_authorize_resource
   # GET /evaluations
   # GET /evaluations.json
   def index
@@ -25,7 +24,6 @@ class EvaluationsController < ApplicationController
 
   # GET /evaluations/new
   def new
-    @evaluation = Evaluation.new
   end
 
   # GET /evaluations/1/edit
@@ -35,8 +33,6 @@ class EvaluationsController < ApplicationController
   # POST /evaluations
   # POST /evaluations.json
   def create
-    
-    @evaluation = Evaluation.new(evaluation_params)
     @evaluation.user_id = current_user.id
 
     respond_to do |format|
@@ -75,11 +71,6 @@ class EvaluationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_evaluation
-      @evaluation = Evaluation.find(params[:id])
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def evaluation_params
       params.require(:evaluation).permit(:name, :description, :n_questions, :user_id)
