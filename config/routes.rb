@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   resources :answers
   resources :questions
   resources :categories
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    :omniauth_callbacks => "users/omniauth_callbacks"
+  }
 
   resources :questions_to_evaluate, only: :destroy
   resources :evaluations
