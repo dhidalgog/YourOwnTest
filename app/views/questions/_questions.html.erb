@@ -1,0 +1,13 @@
+<% @questions_list.each do |question|%>
+  <li>
+    <%= question.content %>
+    | Category: <%= question.category.name %>
+    <%= link_to 'Edit', edit_question_path(question) %>
+    <%= link_to 'Destroy', questions_to_evaluate_path(QuestionsToEvaluate.find_by(evaluation_id: @evaluation.id,question_id: question.id).id), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% question.answers.each do |answer| %>
+      <ul>
+        <li> <%= answer.content %> </li>
+      </ul> 
+    <% end %>
+  </li>
+<% end %>

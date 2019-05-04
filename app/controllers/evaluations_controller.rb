@@ -10,6 +10,7 @@ class EvaluationsController < ApplicationController
   # GET /evaluations/1.json
   def show
     # Question List
+
     @questions_list = @evaluation.questions
     # Question Form
     @question = Question.new

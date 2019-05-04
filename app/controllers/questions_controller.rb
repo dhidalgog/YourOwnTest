@@ -22,11 +22,12 @@ class QuestionsController < ApplicationController
   # POST /questions
   # POST /questions.json
   def create
-    @question.user_id = current_user.id
+    @evaluation = Evaluation.find(params[:question][:questions_to_evaluate_attributes]["0"][:evaluation_id])
+    @questions_list = @evaluation.questions
     respond_to do |format|
       if @question.save
-        format.html { redirect_to @question, notice: 'Question was successfully created.' }
-        format.json { render :show, status: :created, location: @question }
+        format.js
+        # format.json { render :show, status: :created, location: @question }
       else
         format.html { render :new }
         format.json { render json: @question.errors, status: :unprocessable_entity }

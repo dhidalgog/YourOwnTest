@@ -17,7 +17,7 @@
         <h4 class="text-center">Question List</h4>
         
         
-          <ol>
+          <ol id=question-list>
           <% @questions_list.each do |question|%>
             <li>
               <%= question.content %>
@@ -40,7 +40,7 @@
       <div class="row">
         <div class="col-12">
           <p class="h4 text-center">Form Question</p>
-          <%= form_with(model: @question, local: true) do |form| %>
+          <%= form_with model: @question do |form| %>
             <% if @question.errors.any? %>
               <div id="error_explanation">
                 <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
