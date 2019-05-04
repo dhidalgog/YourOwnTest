@@ -16,8 +16,9 @@ class Ability
       can :manage, Category, user_id: user.id
       can :manage, Course, user_id: user.id
 
-    elsif user.Student?
-      # student abilities
+    elsif user.student?
+      can :read, Evaluation
+      can :read, Course
     end
     
     # The first argument to `can` is the action you are giving the user
