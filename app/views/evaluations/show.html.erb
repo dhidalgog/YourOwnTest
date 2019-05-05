@@ -1,6 +1,9 @@
 <div class="card">
-
-  <div class="card-header">
+  <% if @evaluation.activated %>
+    <div class="card-header bg-success">
+  <% else %>
+    <div class="card-header bg-danger">
+  <% end %>
     <div class="row">
       <div class="col-6">
         <h2><%= @evaluation.name %></h2>
@@ -63,7 +66,7 @@
           <% end %>
 
           <div class="col-6">
-            <%= form.submit "Add question", class: "btn btn-success btn-lg"%>
+            <%= form.submit "Add question", class: "btn btn-primary btn-lg"%>
           </div>
           <div class="col-6 text-right">
           </div>

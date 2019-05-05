@@ -3,7 +3,21 @@
   <%if can?(:read, evaluation) %>
     <td><%= evaluation.name %></td>
     <td><%= evaluation.description %></td>
-    <td><%= link_to 'Customize', evaluation %></td>
+    <td>
+      <% if evaluation.activated %>
+        Yes
+      <% else %>
+        No
+      <% end %>
+    </td>
+    <td>
+      <%= link_to 'Customize', evaluation, class:"btn btn-primary" %>
+      <% if evaluation.activated %>
+        <%= link_to 'Deactivate', root_path, class:"btn btn-danger" %>
+      <% else %>
+        <%= link_to 'Activate', root_path, class:"btn btn-success" %>
+      <% end %>
+    </td>
   <% end %>
   </tr>
 <% end %>

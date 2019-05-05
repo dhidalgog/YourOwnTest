@@ -76,6 +76,6 @@ class EvaluationsController < ApplicationController
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def evaluation_params
-      params.require(:evaluation).permit(:name, :description, :n_questions, :user_id)
+      params.require(:evaluation).permit(:name, :description, :n_questions, :user_id, :activated)
     end
 end

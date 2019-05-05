@@ -41,6 +41,7 @@
           <tr>
             <th>Name</th>
             <th>Description</th>
+            <th>Active</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -52,10 +53,20 @@
               <td><%= evaluation.name %></td>
               <td><%= evaluation.description %></td>
               <td>
-                <%= link_to 'Customize', evaluation, class:"btn btn-primary" %>
-                <%= link_to 'Active', root_path, class:"btn btn-success" %>
+                <% if evaluation.activated %>
+                  Yes
+                <% else %>
+                  No
+                <% end %>
               </td>
-
+              <td>
+                <%= link_to 'Customize', evaluation, class:"btn btn-primary" %>
+                <% if evaluation.activated %>
+                  <%= link_to 'Deactivate', edit_evaluation_path(evaluation), class:"btn btn-danger" %>
+                <% else %>
+                  <%= link_to "Activate", edit_evaluation_path(evaluation), class:"btn btn-success" %>
+                <% end %>
+              </td>
             <% end %>
             </tr>
           <% end %>

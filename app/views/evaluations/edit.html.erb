@@ -4,7 +4,11 @@
     <div class="row">
       <div class="col">
         <div class="card">
-          <div class="card-header">
+        <% if @evaluation.activated %>
+          <div class="card-header bg-success">
+        <% else %>
+          <div class="card-header bg-danger">
+        <% end %>
             <h4>Edit Evaluation</h4>
           </div>
           <div class="card-body">
@@ -28,6 +32,17 @@
                 <%= form.label :description %>
                 <%= form.text_field :description, class: "form-control" %>
               </div>
+
+              <fieldset class="form-group">
+                <div class="form-check">
+                <%= form.label :activated, class: "form-check-label" do %>
+                    <%= form.check_box :activated, class: "form-check-input"%>
+                    Active
+                  <% end %>
+                </div>  
+              </fieldset>
+
+
 
               <!-- ACTIONS -->
               <section id="actions" class="py-4 mb-4 bg-light">
