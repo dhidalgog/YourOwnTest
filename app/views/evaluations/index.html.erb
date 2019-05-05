@@ -22,10 +22,10 @@
 
       <div class="row">     
           <div class="col-3"><%= form.label "Name:" %></div>
-          <div class="col-9"><%= form.text_field :name, placeholder:"Evaluation Name" %></div>        
+          <div class="col-9"><%= form.text_field :name, placeholder:"Evaluation Name", class:"form-control" %></div>        
           <div class="w-100"></div>      
           <div class="col-3"><%= form.label "Description:" %></div>
-          <div class="col-9"><%= form.text_field :description, placeholder: "Description" %></div>
+          <div class="col-9"><%= form.text_field :description, placeholder: "Description", class:"form-control" %></div>
           <div class="w-100"></div><br/>     
           <div class="col actions text-center">  
             <%= form.submit "Add new evaluation", class:"btn btn-primary" %>
@@ -51,7 +51,11 @@
             <%if can?(:read, evaluation) %>
               <td><%= evaluation.name %></td>
               <td><%= evaluation.description %></td>
-              <td><%= link_to 'Customize', evaluation %></td>
+              <td>
+                <%= link_to 'Customize', evaluation, class:"btn btn-primary" %>
+                <%= link_to 'Active', root_path, class:"btn btn-success" %>
+              </td>
+
             <% end %>
             </tr>
           <% end %>
