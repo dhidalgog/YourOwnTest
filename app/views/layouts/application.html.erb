@@ -12,11 +12,27 @@
   </head>
 
   <body>
-    <!-- Navbar -->
-    <%= render 'layouts/navbar' %>
-    <div class="container">
-      <%= render 'layouts/alerts' %>  
-      <%= yield %>
-    </div>
+    <% if user_signed_in? %>
+
+      <!-- Navbar -->
+      <% if current_user.student?%>
+        <%= render 'layouts/student_navbar' %>
+        <div class="container">
+          <%= render 'layouts/alerts' %>  
+          <%= yield %>
+        </div>
+      <% else %>
+        <%= render 'layouts/navbar' %>
+        <div class="container">
+          <%= render 'layouts/alerts' %>  
+          <%= yield %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="container">
+        <%= render 'layouts/alerts' %>  
+        <%= yield %>
+      </div>
+    <% end %>
   </body>
 </html>

@@ -5,6 +5,7 @@ class EvaluationsController < ApplicationController
   def index
     @evaluations = Evaluation.all
     @evaluation = Evaluation.new
+
   end
 
   # GET /evaluations/1

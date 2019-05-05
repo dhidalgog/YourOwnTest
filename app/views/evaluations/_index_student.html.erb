@@ -1,0 +1,24 @@
+<h3>My Evaluations</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody id="evaluations-list">
+          <% @evaluations.each do |evaluation| %>
+            <tr>
+            <%if can?(:read, evaluation) && evaluation.activated %>
+              <td><%= evaluation.name %></td>
+              <td><%= evaluation.description %></td>
+              <td>
+                <%= link_to 'Start Evaluation', root_path, class:"btn btn-primary" %>
+              </td>
+            <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
