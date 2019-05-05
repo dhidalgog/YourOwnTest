@@ -1,27 +1,61 @@
-<h1>My Evaluations</h1>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @evaluations.each do |evaluation| %>
-      <tr>
-      <%if can?(:read, evaluation) %>
-        <td><%= evaluation.name %></td>
-        <td><%= evaluation.description %></td>
-        <td><%= link_to 'Customize', evaluation %></td>
-      <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
 <br>
+<%= form_with model: @evaluation do |form| %>
+  <% if @evaluation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@evaluation.errors.count, "error") %> prohibited this evaluation from being saved:</h2>
 
-<%= link_to 'New Evaluation', new_evaluation_path, class: "btn btn-primary btn-lg" %>
+      <ul>
+      <% @evaluation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+  <div class="row">
+    <div class="col-4">
+      <h3>Create new evaluation</h3>
+      <br/>
+
+      <div class="row">     
+          <div class="col-3"><%= form.label "Name:" %></div>
+          <div class="col-9"><%= form.text_field :name, placeholder:"Evaluation Name" %></div>        
+          <div class="w-100"></div>      
+          <div class="col-3"><%= form.label "Description:" %></div>
+          <div class="col-9"><%= form.text_field :description, placeholder: "Description" %></div>
+          <div class="w-100"></div><br/>     
+          <div class="col actions text-center">  
+            <%= form.submit "Add new evaluation", class:"btn btn-primary" %>
+          </div>
+      </div>
+    <% end %>
+
+    </div>
+    <div class="col-8">
+      <h3>My Evaluations</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody id="evaluations-list">
+          <% @evaluations.each do |evaluation| %>
+            <tr>
+            <%if can?(:read, evaluation) %>
+              <td><%= evaluation.name %></td>
+              <td><%= evaluation.description %></td>
+              <td><%= link_to 'Customize', evaluation %></td>
+            <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>

@@ -1,0 +1,9 @@
+<% @evaluations.each do |evaluation| %>
+  <tr>
+  <%if can?(:read, evaluation) %>
+    <td><%= evaluation.name %></td>
+    <td><%= evaluation.description %></td>
+    <td><%= link_to 'Customize', evaluation %></td>
+  <% end %>
+  </tr>
+<% end %>

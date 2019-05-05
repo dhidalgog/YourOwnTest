@@ -4,6 +4,7 @@ class EvaluationsController < ApplicationController
   # GET /evaluations.json
   def index
     @evaluations = Evaluation.all
+    @evaluation = Evaluation.new
   end
 
   # GET /evaluations/1
@@ -35,11 +36,12 @@ class EvaluationsController < ApplicationController
   # POST /evaluations.json
   def create
     @evaluation.user_id = current_user.id
-
+    @evaluations = Evaluation.all
     respond_to do |format|
       if @evaluation.save
-        format.html { redirect_to @evaluation, notice: 'Evaluation was successfully created.' }
-        format.json { render :show, status: :created, location: @evaluation }
+        format.js
+        # format.html { redirect_to @evaluation, notice: 'Evaluation was successfully created.' }
+        # format.json { render :show, status: :created, location: @evaluation }
       else
         format.html { render :new }
         format.json { render json: @evaluation.errors, status: :unprocessable_entity }
