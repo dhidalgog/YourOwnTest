@@ -19,26 +19,26 @@ class User < ApplicationRecord
 
   validates_presence_of %i[name]
 
+  
+  def admin?
+    self.role.name == "Admin"
+  end
+  
+  def teacher?
+    self.role.name == "Teacher"
+  end
+  
+  def student?
+    self.role.name == "Student"
+  end
+  
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
       user.name = auth.info.name
-      user.role_id = 2
+      user.role_id = Role.find_by(name: "Student").id
     end
   end
-
-  def admin?
-    self.role.name == "Admin"
-  end
-
-  def teacher?
-    self.role.name == "Teacher"
-  end
-
-  def student?
-    self.role.name == "Student"
-  end
-
   
 end
