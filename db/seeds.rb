@@ -9,8 +9,9 @@
 # Question.destroy_all
 # Category.destroy_all
 # Course.destroy_all
-# User.destroy_all
-# Role.destroy_all
+User.destroy_all
+Role.destroy_all
+
 
 # Roles
 r1 = Role.create({name: "Teacher", description: "Can manage evaluation, questions, answers and courses"})
