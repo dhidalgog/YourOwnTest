@@ -6,16 +6,16 @@ class User < ApplicationRecord
          :omniauthable, :omniauth_providers => [:facebook]
 
   belongs_to :role
-  has_many :evaluations
-  has_many :categories
-  has_many :questions
+  has_many :evaluations, :dependent => :destroy
+  has_many :categories, :dependent => :destroy
+  has_many :questions, :dependent => :destroy
   # Teacher - Course
-  has_many :courses
+  has_many :courses, :dependent => :destroy
   # Student - Course
-  has_many :belongs_tos
+  has_many :belongs_tos, :dependent => :destroy
   has_many :courses, :through => :belongs_tos
   # Student - Answer
-  has_many :student_answers
+  has_many :student_answers, :dependent => :destroy
 
   validates_presence_of %i[name]
 
