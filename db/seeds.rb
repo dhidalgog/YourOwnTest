@@ -22,9 +22,9 @@ u1 = User.create({name: "Daniel", last_name: "Hidalgo", email: "admin@gmail.com"
 u2 = User.create({name: "Daniel", last_name: "Hidalgo", email: "student@gmail.com", password: "123456", password_confirmation: "123456", role_id: r2.id})
 u3 = User.create({name: "Daniel", last_name: "Hidalgo", email: "teacher@gmail.com", password: "123456", password_confirmation: "123456", role_id: r1.id})
 # Evaluations
-e1= Evaluation.create(name: Maths, description: "Additions for course 'x'", user_id: u3.id)
-e2= Evaluation.create(name: Maths, description: "Subtractions for course 'y'", user_id: u3.id)
-e3= Evaluation.create(name: Maths, description: "Multiplications for course 'z'", user_id: u3.id)
+e1= Evaluation.create(name: "Maths1", description: "Additions for course 'x'", user_id: u3.id)
+e2= Evaluation.create(name: "Maths2", description: "Subtractions for course 'y'", user_id: u3.id)
+e3= Evaluation.create(name: "Maths3", description: "Multiplications for course 'z'", user_id: u3.id)
 # Categories
 c1 = Category.create(name: "Addition", user_id: u3.id)
 c2 = Category.create(name: "Subtraction", user_id: u3.id)
