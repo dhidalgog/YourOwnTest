@@ -1,0 +1,32 @@
+<% count = 0%>
+<h1 class="text-center"><%= @evaluation.name %></h1>
+  <!--Form for every answer -->
+  <%= form_tag evaluation_student_answers_create_path do %>
+    <% @questions_list.each do |question| %>
+      <div class="card border-primary mb-3">
+        <div class="card-header"><%= question.content %></div>
+        <div class="card-body">
+            <% @answers[count][question.content].each do |answer| %>
+              <%= fields_for 'answers[]', answer do |a| %>
+                <%= a.check_box :student_answer %> <%= Answer.find(answer.answer_id).content %><br>
+                <%= a.hidden_field :questions_to_evaluate_id, :value => QuestionsToEvaluate.find_by(question_id: question.id, evaluation_id: @evaluation.id).id %>
+                <%= a.hidden_field :answer_id, :value => answer.answer_id %>
+                <%= a.hidden_field :user_id, :value => current_user.id %>
+              <% end %>
+            <% end %>
+            <% count += 1 %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <%= submit_tag %>
+    </div>
+
+  <% end %> 
+
+
+
+
+
+

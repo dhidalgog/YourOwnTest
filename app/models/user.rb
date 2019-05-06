@@ -14,6 +14,8 @@ class User < ApplicationRecord
   # Student - Course
   has_many :belongs_tos
   has_many :courses, :through => :belongs_tos
+  # Student - Answer
+  has_many :student_answers
 
   validates_presence_of %i[name]
 

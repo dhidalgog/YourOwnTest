@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   resources :courses
   resources :answers
   resources :questions
@@ -9,7 +10,12 @@ Rails.application.routes.draw do
   }
 
   resources :questions_to_evaluate, only: :destroy
-  resources :evaluations
+  resources :evaluations do
+    get 'student_answers/new'
+    post 'student_answers/create'
+    get 'student_answers/result'
+
+  end
   resources :roles
 
   root to: 'evaluations#index'

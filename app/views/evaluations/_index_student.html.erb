@@ -15,7 +15,7 @@
               <td><%= evaluation.name %></td>
               <td><%= evaluation.description %></td>
               <td>
-                <%= link_to 'Start Evaluation', root_path, class:"btn btn-primary" %>
+                <%= link_to 'Start Evaluation', evaluation_student_answers_new_path(evaluation), class:"btn btn-primary" %>
               </td>
             <% end %>
             </tr>
