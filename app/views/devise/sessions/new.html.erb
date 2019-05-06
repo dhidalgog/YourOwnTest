@@ -1,31 +1,55 @@
-<div id="logreg-forms">
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "form-signin") do |f| %>
-      <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign in</h1>
-      <div class="social-login">
-        <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, class: "btn btn-info"%>
+<h1 class="text-center"> Welcome to Your Own Test </h1>
+<hr>
+<div class="row">
+  <div class="col-6">
+  <div class="container">
+    <h3> Features </h3>
+    <ul>
+      <li class="h4">Create your own evaluations for your students</li>
+      <li class="h4">Customize your evaluations adding different questions</li>
+      <li class="h4">Re-use your created questions previusly</li>
+      <li class="h4">Apply your evaluations at the time you want</li>
+    </ul>
+    </div>
+  </div>
+
+  <div class="col-6">
+    <div id="logreg-forms">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "form-signin") do |f| %>
+          <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign in</h1>
+          <div class="social-login">
+            <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, class: "btn btn-info"%>
+              
+          </div>
+          <p style="text-align:center"> OR  </p>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: :email%>
+          <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: :password %><br/>
+          <%= f.submit "Log in", class: "btn btn-success btn-block" %>
+          <% if devise_mapping.rememberable? %>
+            <div class="field">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+          <% end %>
+          <hr>
+            <!-- <p>Don't have an account!</p>  -->
+            <%= link_to new_user_registration_path, class: "btn btn-primary btn-block", id: "btn-signup" do%>
+              <span>
+                <i class="fa fa-user-plus"></i> Sign up New Account
+              </span>
+            <% end %>
+            <% if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+            <%= link_to "Forgot your password?", new_password_path(resource_name), class: "btn btn-secondary btn-block"%>
+            <% end %>
+          <% end %>
+          <br>
           
-      </div>
-      <p style="text-align:center"> OR  </p>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: :email%>
-      <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: :password %><br/>
-      <%= f.submit "Log in", class: "btn btn-success btn-block" %>
-      <% if devise_mapping.rememberable? %>
-        <div class="field">
-          <%= f.check_box :remember_me %>
-          <%= f.label :remember_me %>
-        </div>
-      <% end %>
-      <hr>
-        <!-- <p>Don't have an account!</p>  -->
-        <%= link_to new_user_registration_path, class: "btn btn-primary btn-block", id: "btn-signup" do%>
-          <span>
-            <i class="fa fa-user-plus"></i> Sign up New Account
-          </span>
-        <% end %>
-        <% if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-        <%= link_to "Forgot your password?", new_password_path(resource_name), class: "btn btn-secondary btn-block"%>
-        <% end %>
-      <% end %>
-      <br>
-      
+    </div>
+
+  </div>
 </div>
+
+
+
+
+
