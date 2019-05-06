@@ -18,9 +18,9 @@ r1 = Role.create({name: "Teacher", description: "Can manage evaluation, question
 r2 = Role.create({name: "Student", description: "Can access to the available evaluations and answer them"})
 r3 = Role.create({name: "Admin", description: "Can perform any CRUD operation on any resource"})
 # Users
-u1 = User.create({name: "Daniel", last_name: "Hidalgo", email: "admin@gmail.com", password: "123456", password_confirmation: "123456", role_id: 3})
-u2 = User.create({name: "Daniel", last_name: "Hidalgo", email: "student@gmail.com", password: "123456", password_confirmation: "123456", role_id: 2})
-u3 = User.create({name: "Daniel", last_name: "Hidalgo", email: "teacher@gmail.com", password: "123456", password_confirmation: "123456", role_id: 1})
+u1 = User.create({name: "Daniel", last_name: "Hidalgo", email: "admin@gmail.com", password: "123456", password_confirmation: "123456", role_id: r3.id})
+u2 = User.create({name: "Daniel", last_name: "Hidalgo", email: "student@gmail.com", password: "123456", password_confirmation: "123456", role_id: r2.id})
+u3 = User.create({name: "Daniel", last_name: "Hidalgo", email: "teacher@gmail.com", password: "123456", password_confirmation: "123456", role_id: r1.id})
 # Evaluations
 e1= Evaluation.create(name: Maths, description: "Additions for course 'x'", user_id: u3.id)
 e2= Evaluation.create(name: Maths, description: "Subtractions for course 'y'", user_id: u3.id)
