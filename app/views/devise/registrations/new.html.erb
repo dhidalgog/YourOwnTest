@@ -25,7 +25,7 @@
           <%= f.label "Register as:", class: "p" %>
       </div>
       <div class="col-sm-8">
-          <%= f.select :role_id, Role.pluck(:name, :id) %>
+          <%= f.select :role_id, [["Teacher", 1], ["Student", 2]] %>
       </div>
     </div>
     <%= f.submit "Sign up", class: "btn btn-primary btn-block" %>
